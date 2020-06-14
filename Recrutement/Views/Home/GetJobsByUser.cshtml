@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Recrutement.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "GetJobsByUser";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+<h2 class="alert alert-info">Mes candidatures</h2>
+
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayName("Titre de l'offre")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Status")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Motivation")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Email")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Mon Cv")
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.Email)
+        </td>
+        <td>
+            <a href="~/Uploads/CV/@Html.DisplayFor(modelItem => item.CV)"
+               download="Cv">Télécharger Cv</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

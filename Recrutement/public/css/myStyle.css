@@ -1,0 +1,16 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#logo {
+    margin-top: -12px;
+}
+
+.liens {
+    list-style-type: none;
+}
+.myfooter {
+    background-color: #343a40;
+    color: #fff;
+}
+

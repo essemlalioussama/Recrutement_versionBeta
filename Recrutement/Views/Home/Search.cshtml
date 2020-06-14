@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Recrutement.Models.Job>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+
+    <div class="panel panel-default">
+        <h1 class="panel-heading"> Les résultats des recherches : </h1>
+        <div class="row">
+            @foreach (var elt in Model)
+            {
+
+                <div class="col-md-3">
+                    <img src="~/Uploads/@elt.JobImage" class="thumbnail  center-block" style="width:48px;height:48px;" />
+                    <h3>@Html.DisplayFor(modelItem => elt.JobTitle)</h3>
+                    <p>
+                        @Html.DisplayFor(modelItem => elt.JobContent)
+                    </p>
+                    <p>@Html.ActionLink("Plus d'information", "Details", new { JobId = elt.Id }, new { @class = "btn btn-primary" }) </p>
+                </div>
+
+
+            }
+        </div>
+    </div>

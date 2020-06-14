@@ -1,0 +1,50 @@
+﻿@model Recrutement.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+
+<div>
+    <h4 class="alert alert-info">Détail de l'offre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Secteur de l'offre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayName("Nom de l'offre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayName("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobContent)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.JobImage)" class="thumbnail center-block" style="width:48px;height:48px;" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Postuler", "Apply", new { id = Model.Id },new { @class = "btn btn-success" }) 
+    @Html.ActionLink("Retour à la page d'accueil", "Index",null, new { @class = "btn btn-danger" })
+</p>

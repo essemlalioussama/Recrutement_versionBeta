@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNet.Identity
+@using WebApplication1.Models
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
+    {
+        var db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var UserConnecte = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+        @Html.AntiForgeryToken()
+<ul class="nav navbar-right navbar-nav">
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <strong>Bienvenue Mr(M)  @UserConnecte.UserName</strong>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu alert alert-info">
+
+            @if (UserConnecte.UserType == "Entreprise")
+            {
+
+ 
+                <li>
+                    <div  class="col-md-offset-2">
+                        <div class="row">
+                            <div class="col">
+                                <a href="~/Home/GetOffreByCompany" class="btn btn-group">Les candidatures</a>
+                                <a href="~/Jobs" class="btn btn-group">Mes offres</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+    }
+
+            @if (UserConnecte.UserType == "Administrateur")
+            {
+
+
+                <li>
+                    <div class="col-md-offset-2">
+                        <div class="row">
+                            <div class="col">
+                                <a href="~/Roles" class="btn btn-group">Types des comptes </a>
+                                <a href="~/Categories" class="btn btn-group">Les Secteurs des métiers</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            }
+
+
+            @if(UserConnecte.UserType == "Etudiant" || UserConnecte.UserType == "Diplomé"){
+
+
+                        <li>
+                            <div class="col-md-offset-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/Home/getjobsbyuser" class="btn btn-group">Mes candidatures</a>
+                                        <a href="/Home/index/#offre" class="btn btn-group">Les Offres</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+}
+
+        <li>
+            <div>
+                <div class="col-md-offset-1">
+                    <div class="col">
+                        <a href = "/Account/EditProfil" class="btn btn-group">Mon Compte</a>
+                      </div>
+                </div>
+            </div>
+        </li>
+
+        <li class="divider">
+        <li>
+            <div>
+                <div class="col-md-offset-2">
+                    <div class="col">
+                        <a class="btn btn-danger" href="javascript:document.getElementById('logoff').submit()">Me déconnecter</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        </li>
+
+    </ul>
+    </li>
+@*<li>
+        @Html.ActionLink("Bienvenue Mr(M)  " + User.Identity.GetUserName(), "Index", "Manage")
+    </li>
+*@
+        </ul>
+    }
+
+}
+else{
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="~/Account/Register"><span class="glyphicon glyphicon-user"></span> S'INSCRIRE</a></li>
+    <li><a href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span>SE CONNECTER</a></li>
+</ul>
+}

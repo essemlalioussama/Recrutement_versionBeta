@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Recrutement.Models.Categorie>
+
+@{
+    ViewBag.Title = "Les Catégories des métiers";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+<h2>Les Secteurs des métiers</h2>
+
+<p>
+    @Html.ActionLink("Créer un nouveau", "Create",null, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayName("Nom du Secteur ")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Description")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.CategoryDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id = item.Id },new { @class="btn btn-warning" }) 
+            @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

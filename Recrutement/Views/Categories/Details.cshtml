@@ -1,0 +1,35 @@
+﻿@model Recrutement.Models.Categorie
+
+@{
+    ViewBag.Title = "Détails";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+<h2 class="alert alert-info">Détails</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nom du Secteur ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Retour à la liste", "Index",null, new { @class = "btn btn-danger" })
+</p>

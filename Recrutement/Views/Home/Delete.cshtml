@@ -1,0 +1,55 @@
+﻿@model Recrutement.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+
+<h3 class="alert alert-danger">Voulez-vous vraiment supprimer cela?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Titre de l'offre")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.JobTitle)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayName("Statut")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserType)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayName("Motivation")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-success" />
+            @Html.ActionLink("Retour à la liste", "GetJobsByUser", null,new { @class="btn btn-danger"})
+        </div>
+    }
+</div>

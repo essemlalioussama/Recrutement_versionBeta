@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Recrutement.Models.JobsViewModel>
+<h4 class="alert alert-success text-center"> La liste des candidats</h4>
+<hr />
+@foreach (var gr in Model)
+{
+
+    <h4 class="alert alert-warning"> @gr.JobTitle</h4>
+    <table class="table table-bordered table-hover">
+        <tr class="bg-info">
+            <th class="text-center">
+                Nom du Candidat
+            </th>
+            <th class="text-center">
+                Motivation
+            </th>
+            <th class="text-center">
+                Email
+            </th>
+            <th class="text-center">
+                CV
+            </th>
+            <th class="text-center">
+                Date
+            </th>
+        </tr>
+        @foreach (var item in gr.Elements)
+        {
+        <tr>
+            <td>
+                @item.user.UserName
+            </td>
+            <td>
+                @item.Message
+            </td>
+            <td>
+                @item.user.Email
+            </td>
+            <td>
+                <a href="~/Uploads/CV/@item.CV"
+                   download="Cv">Télécharger Cv</a>
+                
+            </td>
+            <td>
+                @item.Date
+            </td>
+        </tr>
+        }
+
+    </table>
+
+    <hr />
+}

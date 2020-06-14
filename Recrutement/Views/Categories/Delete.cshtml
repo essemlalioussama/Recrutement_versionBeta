@@ -1,0 +1,39 @@
+﻿@model Recrutement.Models.Categorie
+
+@{
+    ViewBag.Title = "Supprimer";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+
+<h2 class="text-danger bg-danger">Voulez-vous vraiment supprimer cela?</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal ">
+        <dt>
+            @Html.DisplayName("Nom du Secteur ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-danger" />
+            @Html.ActionLink("Retour à la liste", "Index", null, new {@class="btn btn-warning"})
+        </div>
+    }
+</div>
